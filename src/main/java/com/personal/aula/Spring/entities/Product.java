@@ -21,7 +21,9 @@ public class Product implements Serializable {
 
     // 'Set' permite que que as categories não repitam e
     // a instanciação faz com que a coleção comece vazia e não null.
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product(){
