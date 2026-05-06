@@ -1,14 +1,8 @@
 package com.personal.aula.Spring.config;
 
-import com.personal.aula.Spring.entities.Category;
-import com.personal.aula.Spring.entities.Order;
-import com.personal.aula.Spring.entities.Product;
-import com.personal.aula.Spring.entities.User;
+import com.personal.aula.Spring.entities.*;
 import com.personal.aula.Spring.entities.enums.OrderStatus;
-import com.personal.aula.Spring.repositories.CategoryRepository;
-import com.personal.aula.Spring.repositories.OrderRepository;
-import com.personal.aula.Spring.repositories.ProductRepository;
-import com.personal.aula.Spring.repositories.UserRepository;
+import com.personal.aula.Spring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +14,9 @@ import java.util.Arrays;
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -67,5 +64,14 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+
     }
 }

@@ -1,12 +1,15 @@
 package com.personal.aula.Spring.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personal.aula.Spring.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -19,6 +22,9 @@ public class Order implements Serializable {
     private Instant moment;
 
     private Integer orderStatus;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> itens = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -68,6 +74,8 @@ public class Order implements Serializable {
     public void setClient(User client) {
         this.client = client;
     }
+
+    public Set<OrderItem> getItens() { return itens; }
 
     @Override
     public boolean equals(Object o) {
