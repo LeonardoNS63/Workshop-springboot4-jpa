@@ -1,7 +1,6 @@
 package com.personal.aula.Spring.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personal.aula.Spring.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
@@ -29,6 +28,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
     public Order() {
 
@@ -74,6 +76,10 @@ public class Order implements Serializable {
     public void setClient(User client) {
         this.client = client;
     }
+
+    public Payment getPayment() { return payment; }
+
+    public void setPayment(Payment payment) { this.payment = payment; }
 
     public Set<OrderItem> getItens() { return itens; }
 
