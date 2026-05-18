@@ -1,4 +1,4 @@
-# 🍃 Workshop Spring Boot 4 + JPA
+# 🍃 Spring Boot 4 + JPA
 
 Projeto desenvolvido para fins de estudo e prática dos conceitos fundamentais de **Spring Boot** e **JPA (Java Persistence API)**, incluindo criação de APIs REST, mapeamento de entidades, relacionamentos e acesso a banco de dados.
 
